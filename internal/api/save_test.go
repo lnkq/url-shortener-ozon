@@ -49,6 +49,9 @@ func TestHandleSave_NewURL_Returns201(t *testing.T) {
 	if err := json.NewDecoder(rec.Body).Decode(&resp); err != nil {
 		t.Fatalf("decode body: %v", err)
 	}
+	if resp.ShortCode != "AbC123XyZ_" {
+		t.Errorf("short code got %q, want %q", resp.ShortCode, "AbC123XyZ_")
+	}
 	if want := "http://localhost:8080/url/AbC123XyZ_"; resp.ShortURL != want {
 		t.Errorf("short url got %q, want %q", resp.ShortURL, want)
 	}

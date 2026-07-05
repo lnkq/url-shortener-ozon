@@ -14,7 +14,8 @@ type saveRequest struct {
 }
 
 type saveResponse struct {
-	ShortURL string `json:"short_url"`
+	ShortCode string `json:"short_code"`
+	ShortURL  string `json:"short_url"`
 }
 
 var validate = validator.New()
@@ -45,7 +46,8 @@ func handleSave(log *slog.Logger, baseURL string, saver URLSaver) http.HandlerFu
 		}
 
 		writeJSON(w, status, saveResponse{
-			ShortURL: strings.TrimRight(baseURL, "/") + "/url/" + shortCode,
+			ShortCode: shortCode,
+			ShortURL:  strings.TrimRight(baseURL, "/") + "/url/" + shortCode,
 		})
 	}
 }
