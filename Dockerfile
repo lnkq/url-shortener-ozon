@@ -1,4 +1,4 @@
-FROM golang:1.23-alpine AS build
+FROM golang:1.24-alpine AS build
 
 WORKDIR /src
 
@@ -15,7 +15,6 @@ RUN apk add --no-cache ca-certificates
 
 WORKDIR /app
 COPY --from=build /url-shortener ./url-shortener
-COPY config ./config
 
 EXPOSE 8080
 
